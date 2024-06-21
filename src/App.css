@@ -70,9 +70,6 @@ body {
 }
 
 .forecast {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
   margin-top: 20px;
 }
 
@@ -115,4 +112,36 @@ body {
 
 .forecast td:first-child {
   font-weight: bold;
+}
+
+
+.table-container {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f4f4f4;
+}
+
+/* Responsive styling */
+@media (max-width: 600px) {
+  th, td {
+      font-size: 12px;
+      padding: 6px;
+  }
+
+  .weather-info p {
+      font-size: 14px;
+  }
 }

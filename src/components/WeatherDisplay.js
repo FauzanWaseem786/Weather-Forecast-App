@@ -1,7 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
-const WeatherDisplay = ({ data, forecast }) => {
-    if (!data) return null;
+const WeatherDisplay = ({ data, forecast, searchInitiated }) => {
+    const [errorMessage, setErrorMessage] = useState('');
+
+    useEffect(() => {
+        if (searchInitiated) {
+            if (!data) {
+                setErrorMessage('No data received. Please check the city name.');
+            } else {
+                setErrorMessage('');
+            }
+        }
+    }, [data, searchInitiated]);
+
+    if (errorMessage) {
+        return (
+            <div className="weather-display">
+                <h1>Error</h1>
+                <p>{errorMessage}</p>
+            </div>
+        );
+    }
+
+    if (!data || !forecast) {
+        return null;
+    }
 
     const groupByDay = (forecast) => {
         if (!forecast || !Array.isArray(forecast)) {
@@ -34,28 +57,30 @@ const WeatherDisplay = ({ data, forecast }) => {
             </div>
             <h2>5-Day Forecast</h2>
             <div className="forecast">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Time</th>
-                            <th>Temperature (°C)</th>
-                            <th>Weather</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {Object.keys(forecastByDay).map((date, index) => (
-                            forecastByDay[date].map((entry, idx) => (
-                                <tr key={`${index}-${idx}`}>
-                                    {idx === 0 && <td rowSpan={forecastByDay[date].length}>{date}</td>}
-                                    <td>{new Date(entry.dt * 1000).toLocaleTimeString()}</td>
-                                    <td>{entry.main.temp} °C</td>
-                                    <td>{entry.weather[0].description}</td>
-                                </tr>
-                            ))
-                        ))}
-                    </tbody>
-                </table>
+                <div className="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Temperature (°C)</th>
+                                <th>Weather</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {Object.keys(forecastByDay).map((date, index) => (
+                                forecastByDay[date].map((entry, idx) => (
+                                    <tr key={`${index}-${idx}`}>
+                                        {idx === 0 && <td rowSpan={forecastByDay[date].length}>{date}</td>}
+                                        <td>{new Date(entry.dt * 1000).toLocaleTimeString()}</td>
+                                        <td>{entry.main.temp} °C</td>
+                                        <td>{entry.weather[0].description}</td>
+                                    </tr>
+                                ))
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     );
