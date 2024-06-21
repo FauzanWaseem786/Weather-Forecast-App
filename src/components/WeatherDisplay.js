@@ -4,6 +4,11 @@ const WeatherDisplay = ({ data, forecast }) => {
     if (!data) return null;
 
     const groupByDay = (forecast) => {
+        if (!forecast || !Array.isArray(forecast)) {
+            console.error('Forecast data is null, undefined, or not an array');
+            return {};
+        }
+
         const days = {};
         forecast.forEach(entry => {
             const date = new Date(entry.dt * 1000).toLocaleDateString();
