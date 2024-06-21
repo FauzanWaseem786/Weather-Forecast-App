@@ -7,6 +7,8 @@ body {
   background-image: url('../public/bck.jpg');
   background-repeat: no-repeat;
   background-size: cover;
+  justify-content: center;
+  align-items: center;
 }
 
 /* App Container */
@@ -61,4 +63,78 @@ body {
 
 .weather-info p strong {
   font-weight: 600;
+}
+
+.forecast {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.forecast-day {
+  background-color: #f0f2f5;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 10px;
+  width: calc(100% / 3 - 20px); /* Adjust this value to fit your layout */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+.forecast-day p {
+  margin: 5px 0;
+  color: #333;
+}
+
+
+.App {
+  text-align: center;
+}
+
+
+
+.weather-display {
+  margin: 20px auto;
+  padding: 20px;
+  max-width: 800px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.weather-display h1 {
+  margin-bottom: 20px;
+}
+
+.weather-info p {
+  margin: 10px 0;
+  line-height: 1.6;
+  font-size: 1.1rem;
+}
+
+.forecast {
+  margin-top: 20px;
+}
+
+.forecast table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.forecast th, .forecast td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.forecast th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.forecast td:first-child {
+  font-weight: bold;
 }

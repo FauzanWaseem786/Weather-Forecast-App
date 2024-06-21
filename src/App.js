@@ -6,16 +6,21 @@ import './App.css';
 
 const App = () => {
     const [weatherData, setWeatherData] = useState(null);
+    const [forecastData, setForecastData] = useState(null);
 
     const handleSearch = async (event) => {
         if (event.key === 'Enter') {
             const city = event.target.value;
-            const apiKey = '0f8c88146a435b8db9d6af1cacbbc02a'; // Replace with your actual API key
-            const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+            const apiKey = '2f5b5d158a5045a556c35a2d057a4b96'; // Provided API key
+            const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+            const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
 
             try {
-                const response = await axios.get(url);
-                setWeatherData(response.data);
+                const weatherResponse = await axios.get(weatherUrl);
+                setWeatherData(weatherResponse.data);
+
+                const forecastResponse = await axios.get(forecastUrl);
+                setForecastData(forecastResponse.data.list);
             } catch (error) {
                 console.error('Error fetching weather data:', error);
             }
@@ -25,7 +30,7 @@ const App = () => {
     return (
         <div className="App">
             <SearchBar onSearch={handleSearch} />
-            <WeatherDisplay data={weatherData} />
+            <WeatherDisplay data={weatherData} forecast={forecastData} />
         </div>
     );
 };
