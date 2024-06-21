@@ -29,6 +29,7 @@ const App = () => {
 
     return (
         <div className="App">
+            <h1>Weather Report For the city of your choice</h1>
             <SearchBar onSearch={handleSearch} />
             <WeatherDisplay data={weatherData} forecast={forecastData} />
         </div>

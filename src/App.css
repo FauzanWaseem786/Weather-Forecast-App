@@ -93,32 +93,6 @@ body {
   text-align: center;
 }
 
-
-
-.weather-display {
-  margin: 20px auto;
-  padding: 20px;
-  max-width: 800px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  background-color: #f9f9f9;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.weather-display h1 {
-  margin-bottom: 20px;
-}
-
-.weather-info p {
-  margin: 10px 0;
-  line-height: 1.6;
-  font-size: 1.1rem;
-}
-
-.forecast {
-  margin-top: 20px;
-}
-
 .forecast table {
   width: 100%;
   border-collapse: collapse;
