@@ -47,7 +47,11 @@ body {
   background-color: #ffffff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-
+@media only screen and (max-width: 730px) {
+  .weather-display {
+    max-width: 100%;
+  }
+}
 .weather-display h1 {
   margin-bottom: 20px;
   font-size: 2rem;
